@@ -1,0 +1,27 @@
+//Press 1st switch & Press 7th switch Glow 5th LED for 30 seconds
+void setup() {
+volatile char *dirf,*dirk;
+dirf=(volatile char *)0x30;
+*dirf=0xFF;
+dirk=(volatile char *)0x107;
+*dirk=0x00;
+}
+void loop() {
+  volatile char *outf,*ink,x;
+  volatile long i;
+  outf=(volatile char *)0x31;
+  ink=(volatile char *)0x106;
+  while(1){
+  x=*ink;
+  if((x&0x01)==0x01){
+  *outf=0x20;
+  for(i=0;i<1000000;i++);
+  *outf=0x00;
+  }
+  if((x&0x80)==0x80){
+  *outf=0x20;
+  for(i=0;i<1000000;i++);
+  *outf=0x00;
+  }
+  }
+}
