@@ -1,0 +1,30 @@
+// Press 2nd switch glow 0th LED, delay, 1st LED, delay, 
+//5th LED, delay,6th LED
+void setup() {
+volatile char *dirf,*dirk;
+dirf=0x30;
+*dirf=0xFF;
+dirk=0x107;
+*dirk=0x00;
+}
+void loop() {
+  volatile char *outf,*ink,x;
+  volatile long i;
+  outf=0x31;
+  *outf=0x00;
+  ink=0x106;
+  *ink=0x00;
+  while(1){
+  x=*ink;
+  if((x&0x04)==0x04){
+  *outf=0x01;
+  for(i=0;i<500000;i++);
+  *outf=0x02;
+  for(i=0;i<500000;i++);
+  *outf=0x20;
+  for(i=0;i<500000;i++);
+  *outf=0x40;
+  for(i=0;i<500000;i++);
+}
+  }
+}
